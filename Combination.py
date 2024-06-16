@@ -13,9 +13,9 @@ class Comb:
         if m <= self.n:
             return
 
-        self._fac += [0] * (m - self.n)
-        self._invfac += [0] * (m - self.n)
-        self._inv += [0] * (m - self.n)
+        self._fac += [1] * (m - self.n)
+        self._invfac += [1] * (m - self.n)
+        self._inv += [1] * (m - self.n)
 
         for i in range(self.n + 1, m + 1):
             self._fac[i] = self._fac[i - 1] * i % P
@@ -52,7 +52,7 @@ class Comb:
     def binom(self, n, m):
         if n < m or m < 0:
             return 0
-        return self.fac(n) * self.invfac(m) * self.invfac(n - m) % P
+        return self.fac(n) * self.invfac(m) % P * self.invfac(n - m) % P
 
     def perm(self, n, m):
         if n < m or m < 0:
