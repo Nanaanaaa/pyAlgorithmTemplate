@@ -2,6 +2,7 @@ minp, primes = [], []
 
 
 def sieve(N: int):
+    global minp, primes
     minp = [0] * (N + 1)
     primes = []
     for i in range(2, N + 1):
