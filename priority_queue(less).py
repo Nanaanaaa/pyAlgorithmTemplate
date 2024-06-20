@@ -4,6 +4,7 @@ import heapq
 class priority_queue:
     def __init__(self):
         self._pq = []
+        return
 
     def push(self, item):
         return heapq.heappush(self._pq, item)
