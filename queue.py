@@ -17,7 +17,7 @@ class queue:
         for i in range(self.siz):
             q[i] = self.q[(self.head + i) % self.capacity]
         self.q = q
-        self.front = 0
+        self.head = 0
         self.rear = self.siz - 1
         self.capacity = capacity
         return
