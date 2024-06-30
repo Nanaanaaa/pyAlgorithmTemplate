@@ -13,10 +13,9 @@ class queue:
         return self.siz
 
     def resize(self, capacity):
-        q = [None] * capacity
-        for i in range(self.siz):
-            q[i] = self.q[(self.head + i) % self.capacity]
-        self.q = q
+        self.q = (
+            self.q[self.head :] + self.q[: self.head] + [None] * (capacity - self.siz)
+        )
         self.head = 0
         self.rear = self.siz - 1
         self.capacity = capacity
