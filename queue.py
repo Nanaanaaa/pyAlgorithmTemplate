@@ -6,6 +6,12 @@ class queue:
         self.head = 0
         self.rear = -1
 
+    def __len__(self):
+        return self.siz
+
+    def __bool__(self):
+        return self.siz != 0
+
     def empty(self):
         return self.siz == 0
 
