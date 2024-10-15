@@ -1,19 +1,18 @@
 import heapq
 
 
-class priority_queue:
+class MaxHeap:
     def __init__(self):
         self._pq = []
-        return
 
     def push(self, item):
-        return heapq.heappush(self._pq, item)
+        return heapq.heappush(self._pq, -item)
 
     def pop(self):
-        return heapq.heappop(self._pq)
+        return -heapq.heappop(self._pq)
 
     def top(self):
-        return self._pq[0][-1]
+        return -self._pq[0][-1]
 
     def empty(self):
         return len(self._pq) == 0
