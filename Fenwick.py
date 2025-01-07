@@ -24,3 +24,14 @@ class Fenwick:
 
     def rangeSum(self, l: int, r: int):
         return self.sum(r) - self.sum(l)
+
+    def find(self, k: int):
+        x = 0
+        cur = 0
+        i = 1 << self.n.bit_length()
+        while i > 0:
+            if x + 1 <= self.n and cur + self.tr[x + i - 1] <= k:
+                x += i
+                cur += self.tr[x + i - 1]
+            i >>= 1
+        return x
