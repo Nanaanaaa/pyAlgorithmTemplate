@@ -30,7 +30,7 @@ class DSU:
     def size(self, x):
         return self._siz[self.find(x)]
 
-    def group(self):
+    def groups(self):
         p = [self.find(i) for i in range(self.n)]
         ans = [[] for _ in range(self.n)]
         for i in range(self.n):
