@@ -40,11 +40,8 @@ class Fenwick:
         if isinstance(x, int):  # fen[x] => rangeSum(x, x + 1)
             return self.rangeSum(x, x + 1)
         elif isinstance(x, slice):  # fen[l:r] => rangeSum(l, r)
-            l, r = x.start, x.stop
-            if l is None:
-                l = 0
-            if r is None:
-                r = self.n
+            l = 0 if x.start is None else x.start
+            r = self.n if x.stop is None else x.stop
             return self.rangeSum(l, r)
         else:
             raise TypeError("__getitem__ type error")
