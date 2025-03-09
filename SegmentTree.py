@@ -1,3 +1,5 @@
+# 好用的太慢, 不好用的也不快, 还是cpp吧
+
 from typing import Generic, List, TypeVar
 
 Info = TypeVar("Info")

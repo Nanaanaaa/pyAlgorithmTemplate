@@ -1,3 +1,5 @@
+# 好用的太慢, 不好用的也不快, 还是cpp吧
+
 import sys, math, string
 from collections import defaultdict
 from bisect import bisect_right as upper_bound, bisect_left as lower_bound
