@@ -35,3 +35,22 @@ class Fenwick:
                 cur += self.tr[x + i - 1]
             i >>= 1
         return x
+
+    def __getitem__(self, x):
+        if isinstance(x, int):  # fen[x] => rangeSum(x, x + 1)
+            return self.rangeSum(x, x + 1)
+        elif isinstance(x, slice):  # fen[l:r] => rangeSum(l, r)
+            l, r = x.start, x.stop
+            if l is None:
+                l = 0
+            if r is None:
+                r = self.n
+            return self.rangeSum(l, r)
+        else:
+            raise TypeError("__getitem__ type error")
+
+    def __setitem__(self, x, v):  # fen[x] += v => fen.add(x, v)
+        if isinstance(x, int):
+            self.add(x, v - self[x])
+        else:
+            raise TypeError("__setitem__ type error")
