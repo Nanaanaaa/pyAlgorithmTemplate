@@ -1,7 +1,6 @@
 def Zfunction(s: str) -> list:
     n = len(s)
-    z = [0] * (n + 1)
-    z[0] = n
+    z = [n] + [0] * n
     j = 1
     for i in range(1, n):
         z[i] = max(0, min(j + z[j] - i, z[i - j]))
