@@ -20,3 +20,6 @@ class MinHeap:
 
     def size(self):
         return len(self._pq)
+
+    def __bool__(self):
+        return not self.empty()
