@@ -48,3 +48,6 @@ class queue:
 
     def back(self):
         return self.q[self.rear]
+
+    def clear(self):
+        return self.__init__()
