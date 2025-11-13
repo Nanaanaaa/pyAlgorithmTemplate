@@ -1,4 +1,7 @@
-def kmp(s: str):
+from typing import List
+
+
+def kmp(s: str) -> List[int]:
     n = len(s)
     f = [0] * (n + 1)
     j = 0

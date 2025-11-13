@@ -1,25 +1,20 @@
 class Fenwick:
-    def __init__(self, data):
-        if isinstance(data, int):
-            self.n = data
-            self.tr = [0] * self.n
-        else:
-            self.n = len(data)
-            self.tr = [0] * self.n
-            for i, v in enumerate(data):
-                self.add(i, v)
+    def __init__(self, n: int = 0) -> None:
+        self._n = n
+        self.data = [0] * n
 
-    def add(self, p: int, v: int):
+    def add(self, p: int, v: int) -> None:
         p += 1
-        while p <= self.n:
-            self.tr[p - 1] += v
+        while p <= self._n:
+            self.data[p - 1] += v
             p += p & -p
 
     def sum(self, p: int):
         ans = 0
         while p > 0:
-            ans += self.tr[p - 1]
+            ans += self.data[p - 1]
             p -= p & -p
+
         return ans
 
     def rangeSum(self, l: int, r: int):
@@ -28,12 +23,13 @@ class Fenwick:
     def find(self, k: int):
         x = 0
         cur = 0
-        i = 1 << self.n.bit_length()
+        i = 1 << self._n.bit_length()
         while i > 0:
-            if x + 1 <= self.n and cur + self.tr[x + i - 1] <= k:
+            if x + 1 <= self._n and cur + self.data[x + i - 1] <= k:
                 x += i
-                cur += self.tr[x + i - 1]
+                cur += self.data[x + i - 1]
             i >>= 1
+
         return x
 
     def __getitem__(self, x):
@@ -41,7 +37,7 @@ class Fenwick:
             return self.rangeSum(x, x + 1)
         elif isinstance(x, slice):  # fen[l:r] => rangeSum(l, r)
             l = 0 if x.start is None else x.start
-            r = self.n if x.stop is None else x.stop
+            r = self._n if x.stop is None else x.stop
             return self.rangeSum(l, r)
         else:
             raise TypeError("__getitem__ type error")
