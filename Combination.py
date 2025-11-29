@@ -2,13 +2,13 @@ P = 1000000007
 
 
 class Comb:
-    def __init__(self):
+    def __init__(self) -> None:
         self.n = 0
         self._fac = [1]
         self._invfac = [1]
         self._inv = [1]
 
-    def init(self, m):
+    def init(self, m: int) -> None:
         m = min(m, P - 1)
         if m <= self.n:
             return
@@ -28,36 +28,29 @@ class Comb:
 
         self.n = m
 
-    def fac(self, m):
-        if m < 0:
-            return 0
+    def fac(self, m: int) -> int:
         if m > self.n:
             self.init(2 * m)
-        return self._fac[m]
+        return 0 if m < 0 else self._fac[m]
 
-    def invfac(self, m):
-        if m < 0:
-            return 0
+    def invfac(self, m: int) -> int:
         if m > self.n:
             self.init(2 * m)
-        return self._invfac[m]
+        return 0 if m < 0 else self._invfac[m]
 
-    def inv(self, m):
-        if m < 0:
-            return 0
+    def inv(self, m: int) -> int:
         if m > self.n:
             self.init(2 * m)
-        return self._inv[m]
+        return 0 if m < 0 else self._inv[m]
 
-    def binom(self, n, m):
-        if n < m or m < 0:
-            return 0
-        return self.fac(n) * self.invfac(m) % P * self.invfac(n - m) % P
-
-    def perm(self, n, m):
-        if n < m or m < 0:
-            return 0
-        return self.fac(n) * self.invfac(n - m) % P
+    binom = lambda self, n, m: (
+        0
+        if n < m or m < 0
+        else self.fac(n) * self.invfac(m) % P * self.invfac(n - m) % P
+    )
+    perm = lambda self, n, m: (
+        0 if n < m or m < 0 else self.fac(n) * self.invfac(n - m) % P
+    )
 
 
 comb = Comb()
